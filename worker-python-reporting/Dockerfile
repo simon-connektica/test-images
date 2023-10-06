@@ -2,7 +2,7 @@
 FROM python:3.11-bookworm-slim
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \ &&
+    ca-certificates && \
     rm -rf /var/cache/apt/lists
 
 # asciidoctor + asciidoctor-pdf
