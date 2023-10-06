@@ -42,3 +42,5 @@ RUN tlmgr install latexmk \
     helvetic \
     titlesec \
     tocloft
+
+RUN pip install poetry==1.6.1
