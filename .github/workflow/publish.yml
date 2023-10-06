@@ -1,0 +1,49 @@
+name: Publish Containers
+on:
+  push:
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  "Publish builder-golang":
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_LATEST: ghcr.io/simon-connektica/builder-golang:latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: docker build -t "${{ env.IMAGE_LATEST }}" .
+      - run: docker image push "${{ env.IMAGE_LATEST }}"
+
+  "Publish worker-python-reporting":
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_LATEST: ghcr.io/simon-connektica/worker-python-reporting:latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: docker build -t "${{ env.IMAGE_LATEST }}" .
+      - run: docker image push "${{ env.IMAGE_LATEST }}"
