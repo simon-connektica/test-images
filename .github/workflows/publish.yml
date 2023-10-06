@@ -26,6 +26,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - run: docker build -t "${{ env.IMAGE_LATEST }}" .
+        working-directory: builder-golang
+
       - run: docker image push "${{ env.IMAGE_LATEST }}"
 
   publish_worker-python-reporting:
@@ -48,4 +50,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - run: docker build -t "${{ env.IMAGE_LATEST }}" .
+        working-directory: worker-python-reporting
+
       - run: docker image push "${{ env.IMAGE_LATEST }}"
