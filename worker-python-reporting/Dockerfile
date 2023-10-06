@@ -1,5 +1,5 @@
 # Why Debian: https://pythonspeed.com/articles/alpine-docker-python/
-FROM python:3.11-bookworm-slim
+FROM python:3.11-slim-bookworm
 
 RUN apt-get update && apt-get install -y \
     ca-certificates && \
