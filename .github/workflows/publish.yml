@@ -6,7 +6,8 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  "Publish builder-golang":
+  publish_builder-golang:
+    name: "Publish builder-golang"
     runs-on: ubuntu-latest
     env:
       IMAGE_LATEST: ghcr.io/simon-connektica/builder-golang:latest
@@ -27,7 +28,8 @@ jobs:
       - run: docker build -t "${{ env.IMAGE_LATEST }}" .
       - run: docker image push "${{ env.IMAGE_LATEST }}"
 
-  "Publish worker-python-reporting":
+  publish_worker-python-reporting:
+    name: "Publish worker-python-reporting"
     runs-on: ubuntu-latest
     env:
       IMAGE_LATEST: ghcr.io/simon-connektica/worker-python-reporting:latest
