@@ -1,8 +1,9 @@
 # Why Debian: https://pythonspeed.com/articles/alpine-docker-python/
-FROM python:3.11-slim-bookworm
+# Cannot use 'slim-bookworm' because latex requires a full Debian image.
+FROM python:3.11-bookworm
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates && \
+    ca-certificates curl wget && \
     rm -rf /var/cache/apt/lists
 
 # asciidoctor + asciidoctor-pdf
